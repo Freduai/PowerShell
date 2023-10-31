@@ -1,0 +1,13 @@
+feat: Buscar eventos do log do sistema entre um intervalo de datas
+
+Este commit inclui um código PowerShell que utiliza as datas de início e fim para recuperar eventos do log do sistema que ocorreram no intervalo entre "2023-05-23 00:40:00" e "2023-05-23 2:45:59". Os eventos são exibidos em uma tabela formatada com as colunas TimeGenerated, EventId, UserName e Message. A busca é limitada aos 10.000 eventos mais recentes.
+
+Isso pode ser útil para a análise de eventos específicos em um intervalo de tempo determinado no log do sistema.
+
+
+$startDate = Get-Date "2023-05-23 00:40:00"
+$endDate = Get-Date "2023-05-23 2:45:59"
+
+
+
+Get-EventLog System -After $startDate -Before $endDate -Newest 10000 | Format-Table TimeGenerated, EventId, UserName, Message -AutoSize -Wrap
