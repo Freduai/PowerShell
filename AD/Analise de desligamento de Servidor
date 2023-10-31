@@ -1,0 +1,9 @@
+feat: Filtrar eventos específicos de desligamento do log do sistema
+
+#Neste commit, foi adicionado um código PowerShell que filtra eventos específicos no log do sistema. Ele busca #os 10.000 eventos mais recentes e filtra eventos com EventIds 41, 1074, 1076, 6005, 6006, 6008, 6009 e 6013. #Os eventos filtrados são então exibidos em uma tabela formatada com as colunas TimeGenerated, EventId, #UserName e Message.
+
+#Essa adição é útil para identificar e revisar eventos específicos do log do sistema, facilitando a análise e #o diagnóstico de problemas ou atividades relevantes.
+
+
+
+Get-EventLog System -Newest 10000 |         Where EventId -in 41,1074,1076,6005,6006,6008,6009,6013 |Format-Table TimeGenerated,EventId,UserName,Message -AutoSize -wrap
